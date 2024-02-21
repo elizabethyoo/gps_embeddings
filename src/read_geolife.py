@@ -46,9 +46,11 @@ def read_user(user_folder):
     return df
 
 def read_all_users(folder):
-    subfolders = os.listdir(folder)
+    _, subfolders, _ =  next(os.walk(folder))
+    
     dfs = []
     for i, sf in enumerate(subfolders):
+        print("CHANGE")
         print('[%d/%d] processing user %s' % (i + 1, len(subfolders), sf))
         df = read_user(os.path.join(folder,sf))
         df['user'] = int(sf)
